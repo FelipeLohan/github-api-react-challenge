@@ -14,12 +14,15 @@ const InputStyled = styled.input`
 type Props = {
   inputType: string;
   inputPlaceholder: string;
+  name: string;
+  handleOnChange: any;
+  value: string;
 }
 
-const Input = ({inputType, inputPlaceholder}: Props) => {
+const Input = ({inputType, inputPlaceholder, name, handleOnChange, value}: Props) => {
   return(
     <>
-    <InputStyled type={inputType} placeholder={inputPlaceholder} />
+    <InputStyled name={name} type={inputType} placeholder={inputPlaceholder} onChange={handleOnChange} value={value} />
     </>
   )
 }
