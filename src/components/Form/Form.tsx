@@ -21,7 +21,7 @@ const Form = () => {
       profileUrl: "",
   })
 
-  async function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleButtonClick(e: any) {
     e.preventDefault();
     let result;
     try {
@@ -41,8 +41,6 @@ const Form = () => {
     };
 
     setResultData(ResultData)
-
-    
   }
 
   function handleInputChange(e: any) {
@@ -63,7 +61,8 @@ const Form = () => {
       <Button text="Encontrar" handleOnClick={handleButtonClick} />
 
       {
-        resultData && 
+
+        resultData.name && 
         <ProfileResult
         imageSource={resultData.avatarUrl}
         profileUrl={resultData.profileUrl}
