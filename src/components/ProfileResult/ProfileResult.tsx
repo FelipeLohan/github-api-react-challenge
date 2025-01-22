@@ -19,7 +19,7 @@ const ProfileResultContainer = styled.div`
 
   img{
     border-radius: 12px;
-    width: 20%;
+    width: 25%;
   }
 `;
 const ProfileResultInfosContainer = styled.div`
@@ -29,6 +29,7 @@ const ProfileResultInfosContainer = styled.div`
   width: 100%;
   padding: 40px;
   border-radius: 12px;
+  gap: 10px;
 
   h3{
     font-size: 3vmin;
@@ -36,10 +37,12 @@ const ProfileResultInfosContainer = styled.div`
   }
   
   div p{
+    display: flex;
     width: 100%;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 8px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -57,10 +60,10 @@ const ProfileResult = ({
         <ProfileResultInfosContainer>
           <h3>Informações</h3>
           <div>
-            <p><strong>Perfil:</strong> {profileUrl}</p>
-            <p><strong>Seguidores:</strong> {followersNumber}</p>
-            <p><strong>Localidade:</strong> {localization}</p>
-            <p><strong>Nome:</strong> {name}</p>
+            <p><strong>Perfil: </strong> {profileUrl}</p>
+            <p><strong>Seguidores: </strong> {followersNumber}</p>
+            <p><strong>Localidade: </strong> {localization}</p>
+            <p><strong>Nome: </strong> {name}</p>
           </div>
         </ProfileResultInfosContainer>
       </ProfileResultContainer>
