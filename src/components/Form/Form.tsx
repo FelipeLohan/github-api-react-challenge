@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import * as githubApi from "../../services/githubApi.ts";
@@ -59,6 +59,10 @@ const Form = () => {
   });
 
   const [catchError, setCatchError] = useState(false);
+
+  useEffect(() => {
+    
+  }, [catchError])
 
   async function handleButtonClick(e: any) {
     e.preventDefault();
