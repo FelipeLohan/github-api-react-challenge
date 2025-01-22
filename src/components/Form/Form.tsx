@@ -32,6 +32,15 @@ const FormContainer = styled.section`
   }
 `;
 
+const ErrorContainer = styled.div`
+width: 80%;
+margin: 0 auto;
+
+h2{
+  color: #ff0000;
+}
+`
+
 const Form = () => {
   type FormData = {
     username: string;
@@ -49,26 +58,32 @@ const Form = () => {
     profileUrl: "",
   });
 
+  const [catchError, setCatchError] = useState(false);
+
   async function handleButtonClick(e: any) {
     e.preventDefault();
     let result;
     try {
       result = await githubApi.findUser(usernameValue);
-      console.log(usernameValue);
-      console.log(result);
+      setResultData({
+        avatarUrl: result.data.avatar_url,
+        followers: result.data.followers,
+        location: result.data.location,
+        name: result.data.name,
+        profileUrl: result.data.html_url,
+      });
+      setCatchError(false)
     } catch (error) {
       console.error("Erro ao buscar usuário:", error);
+      setCatchError(true);
+      setResultData({
+        avatarUrl: "",
+        followers: "",
+        location: "",
+        name: "",
+        profileUrl: "",
+      });
     }
-
-    const ResultData: object = {
-      avatarUrl: result.data.avatar_url,
-      followers: result.data.followers,
-      location: result.data.location,
-      name: result.data.name,
-      profileUrl: result.data.html_url,
-    };
-
-    setResultData(ResultData);
   }
 
   function handleInputChange(e: any) {
@@ -91,8 +106,11 @@ const Form = () => {
           <Button text="Encontrar" handleOnClick={handleButtonClick} />
         </div>
       </FormContainer>
-
-      {resultData.name && (
+      {
+        catchError && <ErrorContainer><h2>Erro ao buscar usuário!</h2></ErrorContainer>
+      }
+      {
+      resultData.name && !catchError  && (
         <ProfileResult
           imageSource={resultData.avatarUrl}
           profileUrl={resultData.profileUrl}
@@ -100,7 +118,8 @@ const Form = () => {
           localization={resultData.location}
           name={resultData.name}
         />
-      )}
+      )
+    }
     </>
   );
 };
